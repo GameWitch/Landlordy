@@ -21,6 +21,11 @@ def home():
     return render_template("index.html", addresses=showjson())
 
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
 @app.route("/owner", methods=['GET'])
 def owner_address():
     if request.method == 'GET':

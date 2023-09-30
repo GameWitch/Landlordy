@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+   <h1>land peasants welcome</h1>
+</div>
+<div>
+    <p>
+        So a number of ago I saw an article about the Chicago DSA connected website found
+        <a href="https://findmylandlord.chicagodsa.org/">Here</a>
+        that talked about how landlords use multiple holding companies to obfuscate their property holdings.
+        They went on to describe a methodology of matching that tax address to all others in a database to reveal
+        these networks of holdings. I had recently learned Python and was curious if I would be able to do the same
+        thing in Denver.
+    </p>
+    <p>
+        Well I could and did, using Flask. I built a pretty simple single page site using the data available from the
+        <a href="http://data.denvergov.org/">City of Denver Open Data Catalog</a> which is licensed under
+        <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>,
+        and here are their <a href=https://www.denvergov.org/opendata/termsofuse"">Terms of Use</a> that I believe
+            I'm now in complance with.
+    </p>
+    <p>
+        I then geocoded all the locations,
+        added the lat and long to the csv file and used open maps to plot the buildings locations.
+        You would enter your address and if it was in the database it would grab the owner's address
+        then cross-reference that to find all other properties that share that owner's address. I hosted it and moved on.
+        But since then I've learned alot. Also, there have been huge developments in the real estate market and the
+        old data just isn't correct in a lot of instances.
+    </p>
+
+    <p>
+        This time I wrote a script that formats the xcel file into two JSONs. The map loads the first JSON that has all the addresses, their coordinates,
+        the owner's address, and an ID number. When you click it sends an async request to the backend to use the owners address as a key to a dictionary
+        that contains that owner's list of Dever properties. That dictionary is saved on the server as the second JSON file.
+        Then that data loads in the Owned Properties section. The ID number is used to link each
+        property in the list to it's marker on the map, so you can click through the owned properties and see their locations.
+
+    </p>
+
+          <a href="{{ url_for('home')}}">To Map</a>
+
+</div>
+</body>
+</html>
